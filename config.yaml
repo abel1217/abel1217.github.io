@@ -1,0 +1,24 @@
+name: Deploy to Surge.sh from GitHub repository: C:\Users\abelito\Documents\ITLA\C7 (sept-dic 2023)\Programacion web\Tareas\tarea 2, perfil html
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Surge.sh
+        run: npm install -g surge
+
+      - name: Set up environment variables
+        run: |
+          echo "::set-env name=SURGE_TOKEN::b03a562a5473b786f5c5828f4f1c7fd7"
+
+      - name: Deploy to Surge.sh
+        run: surge --project "C:\Users\abelito\Documents\ITLA\C7 (sept-dic 2023)\Programacion web\Tareas\tarea 2, perfil html" --token ${{ env.SURGE_TOKEN }}
